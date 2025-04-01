@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice Musical</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vexflow/3.0.9/vexflow-min.js"></script>
+</head>
+<body>
+
+    <h1>Quel est le nom des notes ? 🎵</h1>
+    <div id="partition"></div>
+    <input type="text" id="userInput" placeholder="Ex: C D E F G">
+    <button onclick="checkAnswer()">Valider</button>
+    <p id="result"></p>
+
+    <script>
+        async function loadExercise() {
+            const response = await fetch('/get_exercise');
+            const data = await response.json();
+            drawSheetMusic(data.notes);
+        }
+
+        function drawSheetMusic(notes) {
+            const VF = Vex.Flow;
+            const div = document.getElementById("partition");
+            div.innerHTML = "";  
+            const renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+            renderer.resize(400, 150);
+            const context = renderer.getContext();
+            const stave = new VF.Stave(10, 40, 300);
+            stave.addClef("treble").setContext(context).draw();
+            
+            const notesArray = notes.map(n => new VF.StaveNote({ keys: [n], duration: "q" }));
+            const voice = new VF.Voice({num_beats: notes.length, beat_value: 4});
+            voice.addTickables(notesArray);
+            
+            new VF.Formatter().joinVoices([voice]).format([voice], 300);
+            voice.draw(context, stave);
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById("userInput").value.trim().toUpperCase();
+            const correctAnswer = "C D E F G";
+            if (userAnswer === correctAnswer) {
+                document.getElementById("result").innerText = "Bravo ! 🎉";
+            } else {
+                document.getElementById("result").innerText = "Essaie encore ! ❌";
+            }
+        }
+
+        loadExercise();
+    </script>
+
+</body>
+</html>
