@@ -81,6 +81,7 @@ def signup():
         return redirect(url_for('login'))
 
     return render_template('signup.html')
+
 # Route pour la page des exercices
 @app.route('/exercice')
 def exercice():
