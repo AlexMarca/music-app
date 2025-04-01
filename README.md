@@ -81,7 +81,13 @@ python app.py
 ```
 L'application sera disponible sur http://127.0.0.1:5000/.
 
-## Fonctionnalités à ajouter
+## TO DO
 
-Ajout de différent niveau d'authentification (admin, modérateur)
-
+- Corriger les bugs de BDD (problème de table et d'inscription) -> Comment ajouter les users à la main
+- Ajout de différent niveau d'authentification (admin, modérateur)
+- Mettre à jour le fichier README
+- Ajouter un bouton pour revenir à la page d'acceuil de la page inscription
+- Passer le code en anglais
+- Commenter les parties
+ -routes
+ -templates

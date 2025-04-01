@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user,logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import exists
+
 
 auth_bp = Blueprint('auth_bp', __name__)
 
@@ -30,6 +32,18 @@ def signup():
         password = request.form['password']
         hashed_password = generate_password_hash(password)
 
+        # Verification de l'existance de l'utilisateur via mail 
+        exists_query_mail = db.session.query(exists().where(User.email == email)).scalar()
+        if exists_query_mail:
+            flash('Cette adresse e-mail est déjà utilisée. Veuillez en choisir une autre.')
+            return redirect(url_for('auth_bp.signup'))
+        
+        # Verification de l'existance de l'utilisateur via username    
+        exists_query_username = db.session.query(exists().where(User.username == username)).scalar()
+        if exists_query_username :
+            flash("Ce nom d'utilisateur est déjà utilisée. Veuillez en choisir une autre.")
+            return redirect(url_for('auth_bp.signup'))
+        
         new_user = User(username=username, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
