@@ -1,17 +1,21 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
+# Route pour le menu principal
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
-@app.route('/get_exercise')
-def get_exercise():
-    exercise = {
-        "notes": ["C/4", "D/4", "E/4", "F/4", "G/4"]  # Do, Ré, Mi, Fa, Sol
-    }
-    return jsonify(exercise)
+# Route pour la page des exercices
+@app.route('/exercice')
+def exercice():
+    return render_template('exercice.html')
 
-if __name__ == '__main__':
+# Route pour la page des paramètres
+@app.route('/parametres')
+def parametres():
+    return render_template('parametres.html')
+
+if __name__ == "__main__":
     app.run(debug=True)

@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
+    <title>Paramètres</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenue sur l'application Music App</h1>
-        <div class="menu">
-            <a href="{{ url_for('exercice') }}" class="btn">Lancer un exercice</a>
-            <a href="{{ url_for('parametres') }}" class="btn">Paramètres</a>
-        </div>
+        <h1>Page des paramètres</h1>
+        <p>Ici, vous pouvez configurer vos préférences personnelles pour l'application.</p>
+        <a href="/" class="btn">Retour au menu principal</a>
     </div>
 </body>
 </html>
