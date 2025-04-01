@@ -10,9 +10,9 @@
     <div class="container">
         <h1>Bienvenue sur l'application Music App</h1>
         <div class="menu">
-            <a href="{{ url_for('exercice') }}" class="btn">Lancer un exercice</a>
-            <a href="{{ url_for('parametres') }}" class="btn">Paramètres</a>
-            <a href="{{ url_for('logout') }}">Se déconnecter</a>
+            <a href="{{ url_for('main_bp.exercice') }}" class="btn">Lancer un exercice</a>
+            <a href="{{ url_for('main_bp.parametres') }}" class="btn">Paramètres</a>
+            <a href="{{ url_for('auth_bp.logout') }}">Se déconnecter</a>
         </div>
     </div>
 </body>

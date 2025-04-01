@@ -15,7 +15,28 @@ Music App est une application web construite avec **Flask** qui permet de travai
 
 ## Structure du projet
 
-music-app/ # Dossier principal du projet ├── app.py # Serveur Flask principal qui gère les routes et la base de données ├── instance/ # Contient la base de données SQLite (users.db) ├── templates/ # Dossier contenant les fichiers HTML │ ├── index.html # Page d'accueil (Menu principal) │ ├── exercice.html # Page d'exercice musical │ ├── parametres.html # Page des paramètres │ ├── login.html # Page de connexion │ ├── signup.html # Page d'inscription ├── static/ # Dossier pour les fichiers statiques (CSS, images, etc.) │ ├── css/ │ │ ├── style.css # Fichier CSS pour le style de l'application ├── requirements.txt # Liste des dépendances Python ├── README.md # Documentation du projet
+music-app/                
+├── app.py                 # Point d'entrée de l'application
+├── config.py              # Configuration de l'application
+├── extension.py           # Initialisation de la base de données (correction d'un bug d'import circulaire ?)
+├── routes/                # Dossier contenant les routes Flask
+│   ├── __init__.py        # Fichier pour enregistrer les routes
+│   ├── main_routes.py     # Routes pour la page d'accueil et navigation
+│   ├── auth_routes.py     # Routes pour la page d'authentification et de logout
+├── templates/             # Dossier contenant les fichiers HTML
+│   ├── index.html         # Page d'accueil
+│   ├── login.html         # Page de login
+│   ├── signup.html        # Page deconnexion
+│   ├── exercice.html      # Page d'exercice
+│   ├── parametres.html    # Page des paramètres
+├── static/                # Dossier pour les fichiers statiques (CSS, JS)
+│   ├── css/               # Dossier contenant les styles CSS
+│   │   ├── style.css      # Feuille de style principale
+├── venv/                  # Environnement virtuel (ne pas versionner)
+├── requirements.txt       # Liste des dépendances à installer
+├── .gitignore             # Fichiers à ignorer par Git
+└── README.md              # Documentation du projet
+
 
 markdown
 Copier
@@ -64,23 +85,3 @@ L'application sera disponible sur http://127.0.0.1:5000/.
 
 Ajout de différent niveau d'authentification (admin, modérateur)
 
-Restructuration du projet : 
-music-app/                
-├── app.py                 # Point d'entrée de l'application
-├── config.py              # Configuration de l'application
-├── routes/                # Dossier contenant les routes Flask
-│   ├── __init__.py        # Fichier pour enregistrer les routes
-│   ├── main_routes.py     # Routes pour la page d'accueil et navigation
-│   ├── exercice_routes.py # Routes pour les exercices
-│   ├── parametres_routes.py # Routes pour la page des paramètres
-├── templates/             # Dossier contenant les fichiers HTML
-│   ├── index.html         # Page d'accueil
-│   ├── exercice.html      # Page d'exercice
-│   ├── parametres.html    # Page des paramètres
-├── static/                # Dossier pour les fichiers statiques (CSS, JS)
-│   ├── css/               # Dossier contenant les styles CSS
-│   │   ├── style.css      # Feuille de style principale
-├── venv/                  # Environnement virtuel (ne pas versionner)
-├── requirements.txt       # Liste des dépendances à installer
-├── .gitignore             # Fichiers à ignorer par Git
-└── README.md              # Documentation du projet
